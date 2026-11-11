@@ -115,7 +115,13 @@ final class Plugin
 
     public function filterDupCheck(mixed $value): mixed
     {
-        return $this->lookup()->echoFilter($value);
+        // Last line of the fail-open guarantee: even a failure while the
+        // services are built must hand the importer its value back.
+        try {
+            return $this->lookup()->echoFilter($value);
+        } catch (\Throwable) {
+            return $value;
+        }
     }
 
     public function filterIsSeen(mixed $seen, mixed $url = ''): bool
@@ -124,7 +130,11 @@ final class Plugin
             return true;
         }
 
-        return is_string($url) && $this->lookup()->isSeen($url);
+        try {
+            return is_string($url) && $this->lookup()->isSeen($url);
+        } catch (\Throwable) {
+            return false;
+        }
     }
 
     /**
@@ -139,38 +149,63 @@ final class Plugin
 
     public function actionRecordUrl(mixed $url, mixed $postId = 0): void
     {
-        if (is_string($url)) {
-            $this->recorder()->record($url, is_numeric($postId) ? (int) $postId : 0);
+        try {
+            if (is_string($url)) {
+                $this->recorder()->record($url, is_numeric($postId) ? (int) $postId : 0);
+            }
+        } catch (\Throwable) {
+            return;
         }
     }
 
     public function onAfterInsertPost(mixed $postId, mixed $post = null): void
     {
-        if (is_numeric($postId)) {
-            $this->watcher()->afterInsert((int) $postId, $post);
+        try {
+            if (is_numeric($postId)) {
+                $this->watcher()->afterInsert((int) $postId, $post);
+            }
+        } catch (\Throwable) {
+            // Never interrupt a post insert (PRD 56).
+            return;
         }
     }
 
     public function onPostMeta(mixed $metaId, mixed $postId, mixed $metaKey): void
     {
-        $this->watcher()->metaChanged($metaId, $postId, $metaKey);
+        try {
+            $this->watcher()->metaChanged($metaId, $postId, $metaKey);
+        } catch (\Throwable) {
+            return;
+        }
     }
 
     public function onBeforeDeletePost(mixed $postId): void
     {
-        if (is_numeric($postId)) {
-            $this->watcher()->beforeDelete((int) $postId);
+        try {
+            if (is_numeric($postId)) {
+                $this->watcher()->beforeDelete((int) $postId);
+            }
+        } catch (\Throwable) {
+            return;
         }
     }
 
     public function onInit(): void
     {
-        $this->installer()->onInit();
+        try {
+            $this->installer()->onInit();
+        } catch (\Throwable) {
+            return;
+        }
     }
 
     public function onPrune(): void
     {
-        $this->retention()->prune();
+        try {
+            $this->retention()->prune();
+        } catch (\Throwable) {
+            return;
+        }
     }
 
     public function onInitializeSite(mixed $site): void
