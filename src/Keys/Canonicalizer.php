@@ -107,7 +107,8 @@ final class Canonicalizer
             $hostPart .= ':' . $parts['port'];
         }
 
-        $lowercase = $this->rules->lowercasePath !== null && ($this->rules->lowercasePath)($host);
+        // Case 20: on by default; the callback can turn it off per host.
+        $lowercase = $this->rules->lowercasePath === null || ($this->rules->lowercasePath)($host);
         [$path, $isScript] = $this->path($parts['path'], $lowercase);
 
         $idKey = $this->articleId($host, $path);

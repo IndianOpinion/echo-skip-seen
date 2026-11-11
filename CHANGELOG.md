@@ -16,8 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the value unchanged in every other case.
 - Canonical key (key version 1) that collapses mobile and AMP hosts, the
   Google AMP cache, AMP paths, tracking parameters, fragments, trailing
-  slashes, default ports, `index` files, dot segments and percent-encoding
-  case, and keeps the query on script endpoints. Frozen plain key as an
+  slashes, default ports, `index` files, dot segments, percent-encoding
+  case and path case (off per host by filter), and keeps the query on script
+  endpoints. Frozen plain key as an
   exact-match safety net.
 - Per-site table of MD5 key hashes; no URLs stored.
 - Record path on post insert and on source meta add or update, plus

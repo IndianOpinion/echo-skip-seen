@@ -130,12 +130,15 @@ Transient: `echo_skip_seen_install_lock`. Scheduled event: `echo_skip_seen_prune
    Operators who want a list hook `echo_skip_seen_skipped` (see
    `examples/log-skips.php`) or turn on debug logging; `wp skip-seen check`
    and the Tools page recompute keys from any URL.
-5. **Path case.** Paths keep their case by default. This reverses PRD case
-   20: lower-casing by default would merge two articles on any site whose
-   paths are case-sensitive, and a wrong skip loses an article silently while
-   a wrong pass costs one download. `echo_skip_seen_lowercase_path` opts a
-   host in (see `examples/configure.php`). Acceptance test T16 is inverted
-   to match.
+5. **Path case.** Paths are lower-cased by default, as PRD case 20 says,
+   and `echo_skip_seen_lowercase_path` returning false turns it off for one
+   host (see `examples/configure.php`). A per-host opt-out is enough. The
+   reverse default would buy no safety: the plain key (PRD 41, frozen) is
+   lower-cased as a whole, so a case-sensitive publisher's `/A/Story` and
+   `/a/story` already share a plain key and match each other across kinds.
+   Keeping the canonical key case-sensitive would only lose the variants
+   that differ in case and in something else (a mobile host, a tracking
+   parameter). Escapes keep upper-case hex after lower-casing.
 6. **Per-request cache.** A capped array, not an LRU. Hits are keyed by hash
    and misses by the pair of hashes, each capped at 5,000 entries; when a cap
    is reached the oldest entries are dropped. One import run rarely repeats a
@@ -209,6 +212,15 @@ Transient: `echo_skip_seen_install_lock`. Scheduled event: `echo_skip_seen_prune
 - **Multisite caches.** Lookup caches, the settings cache, the own-host value
   and the record markers are keyed by site, so an importer that calls
   `switch_to_blog()` in one request never gets another site's answer.
+  Pending counter increments are kept per site too, and the shutdown flush
+  writes each site's counts to that site's option.
+- **Hook wrappers.** Every callback the plugin registers catches
+  `Throwable` around building its services as well as running them, so even
+  a broken environment (no usable `$wpdb`, an autoload failure) hands Echo
+  its value back and never interrupts a post insert.
+- **Backfill memory.** `wp skip-seen backfill` empties the in-process object
+  cache after every batch with WP-CLI's own helper, so primed post and meta
+  caches do not grow with the size of the site.
 - **Backfill dates.** Rows get the post's GMT date as first and last seen.
   Drafts with a zero GMT date fall back to the local date.
 - **Backfill admin runner.** One batch of 500 per AJAX request; totals and

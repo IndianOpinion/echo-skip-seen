@@ -56,6 +56,7 @@ final class CanonicalKeyTest extends TestCase
             'T14 tilde' => ['https://example.com/%7Ea', 'https://example.com/~a'],
             'T14 hex case' => ['https://example.com/%e2%82%b9', 'https://example.com/%E2%82%B9'],
             'T15 raw UTF-8' => ['https://example.com/समाचार/a', 'https://example.com/%E0%A4%B8%E0%A4%AE%E0%A4%BE%E0%A4%9A%E0%A4%BE%E0%A4%B0/a'],
+            'T16 path case' => ['https://example.com/A/Story', 'https://example.com/a/story'],
             'T17 double slash' => ['https://example.com/a//b', 'https://example.com/a/b'],
             'T17 dot' => ['https://example.com/a/./b', 'https://example.com/a/b'],
             'T17 dot dot' => ['https://example.com/a/x/../b', 'https://example.com/a/b'],
@@ -98,7 +99,6 @@ final class CanonicalKeyTest extends TestCase
             'T6 other port' => ['https://example.com:8080/a', 'https://example.com/a'],
             'T12 language subdomain' => ['https://hindi.example.com/a', 'https://example.com/a'],
             'T14 encoded slash' => ['https://example.com/a%2Fb', 'https://example.com/a/b'],
-            'T16 path case by default' => ['https://example.com/A/Story', 'https://example.com/a/story'],
             'T22 id on slug path' => ['https://example.com/news?id=42', 'https://example.com/news?id=43'],
             'T23 root p' => ['https://example.com/?p=1', 'https://example.com/?p=2'],
             'T23 aspx keeps all' => ['https://example.com/page.aspx?PRID=7&lang=1', 'https://example.com/page.aspx?PRID=7'],
@@ -192,14 +192,15 @@ final class CanonicalKeyTest extends TestCase
         self::assertSame($this->key('https://example.com/a'), $this->key('https://hindi.example.com/a'));
     }
 
-    public function testPathLowerCasingIsOptInPerHost(): void
+    public function testPathLowerCasingIsOnByDefaultAndOffPerHost(): void
     {
-        // T16 (decision 5: off by default, a filter opts a host in).
-        self::assertSame('example.com/A/Story', $this->key('https://example.com/A/Story'));
-        add_filter('echo_skip_seen_lowercase_path', static fn (bool $lower, string $host): bool => $host === 'example.com', 10, 2);
+        // T16: lower-cased by default (escapes keep upper-case hex); the filter turns it off for one host.
         self::assertSame($this->key('https://example.com/a/story'), $this->key('https://example.com/A/Story'));
         self::assertSame('example.com/a%E2%82%B9', $this->key('https://example.com/A%e2%82%b9'));
-        self::assertSame('other.test/A', $this->key('https://other.test/A'));
+        add_filter('echo_skip_seen_lowercase_path', static fn (bool $lower, string $host): bool => $lower && $host !== 'example.com', 10, 2);
+        self::assertSame('example.com/A/Story', $this->key('https://example.com/A/Story'));
+        self::assertNotSame($this->key('https://example.com/a/story'), $this->key('https://example.com/A/Story'));
+        self::assertSame('other.test/a', $this->key('https://other.test/A'));
     }
 
     public function testAmpLookalikesAreNotTouched(): void

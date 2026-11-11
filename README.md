@@ -85,7 +85,7 @@ Settings live on **Tools, Echo Skip Seen** (one option per site, not autoloaded)
 | Delete rows on post delete | off | `echo_skip_seen_delete_on_post_delete` filter | Off: a deleted import should not come back. |
 | Debug logging | off | Tools page | One PHP error log line per skip and per failure. |
 | Echo callback priority | 10 | `ECHO_SKIP_SEEN_PRIORITY` constant, `echo_skip_seen_priority` filter (add it from a must-use plugin) | |
-| Lower-case paths | off | `echo_skip_seen_lowercase_path` filter, per host | Opt a host in when it routes paths case-insensitively. |
+| Lower-case paths | on | `echo_skip_seen_lowercase_path` filter, per host | Return false for a host whose paths are case-sensitive. The plain key is always lower-case. |
 | Wrapper hosts | `news.google.com` | `echo_skip_seen_wrapper_hosts` filter | URLs on these hosts are left to an unwrap tool. |
 | Mirror host labels | `www`, `www1`, `www2`, `www3`, `ww`, `m`, `mobile`, `amp`, `wap`, `mob`, `touch`, `lite` | `echo_skip_seen_mirror_labels` filter | Leading labels removed while at least two remain. |
 | Tracking parameters | `utm_*` and a list of 38 names | `echo_skip_seen_tracking_params` filter | Always dropped. |
@@ -155,7 +155,7 @@ Examples: [another importer](examples/custom-importer.php), [redirect unwrapping
 - It knows only what was imported after install or backfill. Run the backfill once.
 - It needs the source URL meta key. With none configured, only direct calls record.
 - Without `intl`, a Unicode host and its punycode form give different keys.
-- Paths are case-sensitive by default. A publisher that serves `/A/Story` and `/a/story` as one page needs the lower-case filter for its host.
+- Paths are compared without case by default, because most news sites route that way and feeds mix case. Two articles whose URLs differ only in path case are treated as one. The lower-case filter turns this off for the canonical key of one host, but the frozen plain key is always lower-case, so exact repeats in another case still match.
 - When a parameter repeats, the last value wins, as PHP reads a query string.
 - Counters are an operating aid: a request that dies before shutdown loses its counts.
 

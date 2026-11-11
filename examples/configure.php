@@ -21,10 +21,11 @@ add_filter('echo_skip_seen_post_types', static fn (array $types): array => array
 // Keep rows for 30 days instead of 90.
 add_filter('echo_skip_seen_retention_days', static fn (): int => 30);
 
-// This publisher routes paths case-insensitively, so lower-case them.
+// This publisher's paths are case-sensitive: keep their case in the canonical
+// key. (The plain key is always lower-case.)
 add_filter(
     'echo_skip_seen_lowercase_path',
-    static fn (bool $lower, string $host): bool => $lower || $host === 'example.com',
+    static fn (bool $lower, string $host): bool => $lower && $host !== 'example.com',
     10,
     2
 );

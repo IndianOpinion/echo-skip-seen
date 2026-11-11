@@ -61,7 +61,7 @@ final class Rules
      * @param array<string, string> $articleIdRules   Host to regular expression (case 37).
      * @param bool                  $useIntl          Convert Unicode hosts to punycode (case 11).
      * @param (Closure(string, string): string)|null $hostFilter      Final host part (case 16).
-     * @param (Closure(string): bool)|null           $lowercasePath   Per-host path lower-casing (case 20).
+     * @param (Closure(string): bool)|null           $lowercasePath   Per-host path lower-casing (case 20); null lower-cases every host.
      * @param (Closure(string, string): string)|null $keyFilter       Final key (case 38).
      */
     public function __construct(
@@ -112,7 +112,7 @@ final class Rules
                 return is_string($filtered) ? $filtered : $host;
             },
             static function (string $host): bool {
-                return (bool) apply_filters('echo_skip_seen_lowercase_path', false, $host);
+                return (bool) apply_filters('echo_skip_seen_lowercase_path', true, $host);
             },
             static function (string $key, string $url): string {
                 $filtered = apply_filters('echo_skip_seen_canonical_key', $key, $url);
