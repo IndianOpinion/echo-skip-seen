@@ -20,6 +20,11 @@ final class FakeProgressBar
     }
 }
 
+function wp_clear_object_cache(): void
+{
+    \WpStubs::$objectCacheClears++;
+}
+
 function make_progress_bar(string $message, int $count): FakeProgressBar
 {
     return new FakeProgressBar();

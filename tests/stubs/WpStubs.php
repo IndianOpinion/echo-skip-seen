@@ -60,6 +60,8 @@ final class WpStubs
 
     public static int $nextPostId = 1;
 
+    public static int $objectCacheClears = 0;
+
     public static function reset(): void
     {
         global $wpdb;
@@ -82,6 +84,7 @@ final class WpStubs
         self::$cliCommands = [];
         self::$networkActive = [];
         self::$nextPostId = 1;
+        self::$objectCacheClears = 0;
         $wpdb = new wpdb();
         $_POST = [];
         $_GET = [];

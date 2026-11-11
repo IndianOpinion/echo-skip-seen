@@ -126,6 +126,13 @@ final class Command
                 if (is_callable($tick)) {
                     $tick(max(1, $batch->scanned));
                 }
+                // Each batch primes the post and meta caches; on a site with
+                // millions of posts they would grow until PHP runs out of
+                // memory. WP-CLI's helper empties the in-process object cache
+                // (and the saved query log when SAVEQUERIES is on).
+                if (function_exists('WP_CLI\Utils\wp_clear_object_cache')) {
+                    \WP_CLI\Utils\wp_clear_object_cache();
+                }
             });
             if (is_callable($finish)) {
                 $finish();

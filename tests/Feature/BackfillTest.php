@@ -84,6 +84,8 @@ final class BackfillTest extends PluginTestCase
         $this->cli()->backfill([], ['from-id' => '5', 'batch' => '3']);
         self::assertCount(10, $this->rows());
         self::assertContains('Posts scanned:            5', WpStubs::$cliOutput);
+        // Batches of 3 over posts 6 to 10: two batches, the object cache emptied after each.
+        self::assertSame(2, WpStubs::$objectCacheClears);
     }
 
     public function testAdminAjaxChecksNonceAndCapabilityAndResumes(): void
