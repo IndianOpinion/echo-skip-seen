@@ -1,0 +1,1002 @@
+[
+    {
+        "url": "https://example.com",
+        "canonical": "example.com/",
+        "plain": "example.com"
+    },
+    {
+        "url": "HTTP://example.com?id=1&id=2#frag",
+        "canonical": "example.com/?id=2",
+        "plain": "example.com?id=1&id=2"
+    },
+    {
+        "url": "https://example.com/?utm_source=rss&utm_medium=feed",
+        "canonical": "example.com/",
+        "plain": "example.com?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "HTTP://example.com/?a[]=1&x=&ID=AbC",
+        "canonical": "example.com/?id=AbC",
+        "plain": "example.com?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "https://example.com/a/b/?id=42&page=3",
+        "canonical": "example.com/a/b?id=42",
+        "plain": "example.com/a/b?id=42&page=3"
+    },
+    {
+        "url": "HTTP://example.com/a/b/?fbclid=Q&story=12",
+        "canonical": "example.com/a/b?story=12",
+        "plain": "example.com/a/b?fbclid=q&story=12"
+    },
+    {
+        "url": "https://example.com/2026/11/story-title-123456.html?p=7&ref=home",
+        "canonical": "example.com/2026/11/story-title-123456.html?p=7",
+        "plain": "example.com/2026/11/story-title-123456.html?p=7&ref=home"
+    },
+    {
+        "url": "HTTP://example.com/2026/11/story-title-123456.html?q=caf%c3%a9+bar",
+        "canonical": "example.com/2026/11/story-title-123456.html",
+        "plain": "example.com/2026/11/story-title-123456.html?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "https://example.com/news/amp/story?b=2&a=1",
+        "canonical": "example.com/news/story",
+        "plain": "example.com/news/amp/story?b=2&a=1"
+    },
+    {
+        "url": "HTTP://example.com/story.amp",
+        "canonical": "example.com/story",
+        "plain": "example.com/story.amp"
+    },
+    {
+        "url": "https://example.com/story.amp?id=1&id=2#frag",
+        "canonical": "example.com/story?id=2",
+        "plain": "example.com/story.amp?id=1&id=2"
+    },
+    {
+        "url": "HTTP://example.com/A//B/./c/../D?utm_source=rss&utm_medium=feed",
+        "canonical": "example.com/A/B/D",
+        "plain": "example.com/a//b/./c/../d?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "https://example.com/A//B/./c/../D?a[]=1&x=&ID=AbC",
+        "canonical": "example.com/A/B/D?id=AbC",
+        "plain": "example.com/a//b/./c/../d?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "HTTP://example.com/%7euser/%e2%82%b9?id=42&page=3",
+        "canonical": "example.com/~user/%E2%82%B9?id=42",
+        "plain": "example.com/%7euser/%e2%82%b9?id=42&page=3"
+    },
+    {
+        "url": "https://example.com/%7euser/%e2%82%b9?fbclid=Q&story=12",
+        "canonical": "example.com/~user/%E2%82%B9?story=12",
+        "plain": "example.com/%7euser/%e2%82%b9?fbclid=q&story=12"
+    },
+    {
+        "url": "HTTP://example.com/index.php?p=7&ref=home",
+        "canonical": "example.com/?p=7",
+        "plain": "example.com/index.php?p=7&ref=home"
+    },
+    {
+        "url": "https://example.com/index.php?q=caf%c3%a9+bar",
+        "canonical": "example.com/?q=caf%C3%A9+bar",
+        "plain": "example.com/index.php?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "HTTP://example.com/page.aspx?b=2&a=1",
+        "canonical": "example.com/page.aspx?a=1&b=2",
+        "plain": "example.com/page.aspx?b=2&a=1"
+    },
+    {
+        "url": "https://example.com/samachar/समाचार",
+        "canonical": "example.com/samachar/%E0%A4%B8%E0%A4%AE%E0%A4%BE%E0%A4%9A%E0%A4%BE%E0%A4%B0",
+        "plain": "example.com/samachar/समाचार"
+    },
+    {
+        "url": "HTTP://example.com/samachar/समाचार?id=1&id=2#frag",
+        "canonical": "example.com/samachar/%E0%A4%B8%E0%A4%AE%E0%A4%BE%E0%A4%9A%E0%A4%BE%E0%A4%B0?id=2",
+        "plain": "example.com/samachar/समाचार?id=1&id=2"
+    },
+    {
+        "url": "https://example.com/s-amp.html?utm_source=rss&utm_medium=feed",
+        "canonical": "example.com/s.html",
+        "plain": "example.com/s-amp.html?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "HTTP://example.com/s-amp.html?a[]=1&x=&ID=AbC",
+        "canonical": "example.com/s.html?id=AbC",
+        "plain": "example.com/s-amp.html?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "https://example.com/x/amp_articleshow/99.cms?id=42&page=3",
+        "canonical": "example.com/x/articleshow/99.cms?id=42",
+        "plain": "example.com/x/amp_articleshow/99.cms?id=42&page=3"
+    },
+    {
+        "url": "HTTP://example.com/x/amp_articleshow/99.cms?fbclid=Q&story=12",
+        "canonical": "example.com/x/articleshow/99.cms?story=12",
+        "plain": "example.com/x/amp_articleshow/99.cms?fbclid=q&story=12"
+    },
+    {
+        "url": "https://example.com/camp/amplifier?p=7&ref=home",
+        "canonical": "example.com/camp/amplifier?p=7",
+        "plain": "example.com/camp/amplifier?p=7&ref=home"
+    },
+    {
+        "url": "HTTP://example.com/camp/amplifier?q=caf%c3%a9+bar",
+        "canonical": "example.com/camp/amplifier",
+        "plain": "example.com/camp/amplifier?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "https://www.Example.COM?id=42&page=3",
+        "canonical": "example.com/?id=42&page=3",
+        "plain": "example.com?id=42&page=3"
+    },
+    {
+        "url": "HTTP://www.Example.COM?fbclid=Q&story=12",
+        "canonical": "example.com/?story=12",
+        "plain": "example.com?fbclid=q&story=12"
+    },
+    {
+        "url": "https://www.Example.COM/?p=7&ref=home",
+        "canonical": "example.com/?p=7",
+        "plain": "example.com?p=7&ref=home"
+    },
+    {
+        "url": "HTTP://www.Example.COM/?q=caf%c3%a9+bar",
+        "canonical": "example.com/?q=caf%C3%A9+bar",
+        "plain": "example.com?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "https://www.Example.COM/a/b/?b=2&a=1",
+        "canonical": "example.com/a/b",
+        "plain": "example.com/a/b?b=2&a=1"
+    },
+    {
+        "url": "HTTP://www.Example.COM/2026/11/story-title-123456.html",
+        "canonical": "example.com/2026/11/story-title-123456.html",
+        "plain": "example.com/2026/11/story-title-123456.html"
+    },
+    {
+        "url": "https://www.Example.COM/2026/11/story-title-123456.html?id=1&id=2#frag",
+        "canonical": "example.com/2026/11/story-title-123456.html?id=2",
+        "plain": "example.com/2026/11/story-title-123456.html?id=1&id=2"
+    },
+    {
+        "url": "HTTP://www.Example.COM/news/amp/story?utm_source=rss&utm_medium=feed",
+        "canonical": "example.com/news/story",
+        "plain": "example.com/news/amp/story?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "https://www.Example.COM/news/amp/story?a[]=1&x=&ID=AbC",
+        "canonical": "example.com/news/story?id=AbC",
+        "plain": "example.com/news/amp/story?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "HTTP://www.Example.COM/story.amp?id=42&page=3",
+        "canonical": "example.com/story?id=42",
+        "plain": "example.com/story.amp?id=42&page=3"
+    },
+    {
+        "url": "https://www.Example.COM/story.amp?fbclid=Q&story=12",
+        "canonical": "example.com/story?story=12",
+        "plain": "example.com/story.amp?fbclid=q&story=12"
+    },
+    {
+        "url": "HTTP://www.Example.COM/A//B/./c/../D?p=7&ref=home",
+        "canonical": "example.com/A/B/D?p=7",
+        "plain": "example.com/a//b/./c/../d?p=7&ref=home"
+    },
+    {
+        "url": "https://www.Example.COM/A//B/./c/../D?q=caf%c3%a9+bar",
+        "canonical": "example.com/A/B/D",
+        "plain": "example.com/a//b/./c/../d?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "HTTP://www.Example.COM/%7euser/%e2%82%b9?b=2&a=1",
+        "canonical": "example.com/~user/%E2%82%B9",
+        "plain": "example.com/%7euser/%e2%82%b9?b=2&a=1"
+    },
+    {
+        "url": "https://www.Example.COM/index.php",
+        "canonical": "example.com/",
+        "plain": "example.com/index.php"
+    },
+    {
+        "url": "HTTP://www.Example.COM/index.php?id=1&id=2#frag",
+        "canonical": "example.com/?id=2",
+        "plain": "example.com/index.php?id=1&id=2"
+    },
+    {
+        "url": "https://www.Example.COM/page.aspx?utm_source=rss&utm_medium=feed",
+        "canonical": "example.com/page.aspx",
+        "plain": "example.com/page.aspx?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "HTTP://www.Example.COM/page.aspx?a[]=1&x=&ID=AbC",
+        "canonical": "example.com/page.aspx?id=AbC",
+        "plain": "example.com/page.aspx?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "https://www.Example.COM/samachar/समाचार?id=42&page=3",
+        "canonical": "example.com/samachar/%E0%A4%B8%E0%A4%AE%E0%A4%BE%E0%A4%9A%E0%A4%BE%E0%A4%B0?id=42",
+        "plain": "example.com/samachar/समाचार?id=42&page=3"
+    },
+    {
+        "url": "HTTP://www.Example.COM/samachar/समाचार?fbclid=Q&story=12",
+        "canonical": "example.com/samachar/%E0%A4%B8%E0%A4%AE%E0%A4%BE%E0%A4%9A%E0%A4%BE%E0%A4%B0?story=12",
+        "plain": "example.com/samachar/समाचार?fbclid=q&story=12"
+    },
+    {
+        "url": "https://www.Example.COM/s-amp.html?p=7&ref=home",
+        "canonical": "example.com/s.html?p=7",
+        "plain": "example.com/s-amp.html?p=7&ref=home"
+    },
+    {
+        "url": "HTTP://www.Example.COM/s-amp.html?q=caf%c3%a9+bar",
+        "canonical": "example.com/s.html",
+        "plain": "example.com/s-amp.html?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "https://www.Example.COM/x/amp_articleshow/99.cms?b=2&a=1",
+        "canonical": "example.com/x/articleshow/99.cms",
+        "plain": "example.com/x/amp_articleshow/99.cms?b=2&a=1"
+    },
+    {
+        "url": "HTTP://www.Example.COM/camp/amplifier",
+        "canonical": "example.com/camp/amplifier",
+        "plain": "example.com/camp/amplifier"
+    },
+    {
+        "url": "https://www.Example.COM/camp/amplifier?id=1&id=2#frag",
+        "canonical": "example.com/camp/amplifier?id=2",
+        "plain": "example.com/camp/amplifier?id=1&id=2"
+    },
+    {
+        "url": "https://m.news.example.org?b=2&a=1",
+        "canonical": "news.example.org/?a=1&b=2",
+        "plain": "m.news.example.org?b=2&a=1"
+    },
+    {
+        "url": "HTTP://m.news.example.org/",
+        "canonical": "news.example.org/",
+        "plain": "m.news.example.org"
+    },
+    {
+        "url": "https://m.news.example.org/?id=1&id=2#frag",
+        "canonical": "news.example.org/?id=2",
+        "plain": "m.news.example.org?id=1&id=2"
+    },
+    {
+        "url": "HTTP://m.news.example.org/a/b/?utm_source=rss&utm_medium=feed",
+        "canonical": "news.example.org/a/b",
+        "plain": "m.news.example.org/a/b?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "https://m.news.example.org/a/b/?a[]=1&x=&ID=AbC",
+        "canonical": "news.example.org/a/b?id=AbC",
+        "plain": "m.news.example.org/a/b?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "HTTP://m.news.example.org/2026/11/story-title-123456.html?id=42&page=3",
+        "canonical": "news.example.org/2026/11/story-title-123456.html?id=42",
+        "plain": "m.news.example.org/2026/11/story-title-123456.html?id=42&page=3"
+    },
+    {
+        "url": "https://m.news.example.org/2026/11/story-title-123456.html?fbclid=Q&story=12",
+        "canonical": "news.example.org/2026/11/story-title-123456.html?story=12",
+        "plain": "m.news.example.org/2026/11/story-title-123456.html?fbclid=q&story=12"
+    },
+    {
+        "url": "HTTP://m.news.example.org/news/amp/story?p=7&ref=home",
+        "canonical": "news.example.org/news/story?p=7",
+        "plain": "m.news.example.org/news/amp/story?p=7&ref=home"
+    },
+    {
+        "url": "https://m.news.example.org/news/amp/story?q=caf%c3%a9+bar",
+        "canonical": "news.example.org/news/story",
+        "plain": "m.news.example.org/news/amp/story?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "HTTP://m.news.example.org/story.amp?b=2&a=1",
+        "canonical": "news.example.org/story",
+        "plain": "m.news.example.org/story.amp?b=2&a=1"
+    },
+    {
+        "url": "https://m.news.example.org/A//B/./c/../D",
+        "canonical": "news.example.org/A/B/D",
+        "plain": "m.news.example.org/a//b/./c/../d"
+    },
+    {
+        "url": "HTTP://m.news.example.org/A//B/./c/../D?id=1&id=2#frag",
+        "canonical": "news.example.org/A/B/D?id=2",
+        "plain": "m.news.example.org/a//b/./c/../d?id=1&id=2"
+    },
+    {
+        "url": "https://m.news.example.org/%7euser/%e2%82%b9?utm_source=rss&utm_medium=feed",
+        "canonical": "news.example.org/~user/%E2%82%B9",
+        "plain": "m.news.example.org/%7euser/%e2%82%b9?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "HTTP://m.news.example.org/%7euser/%e2%82%b9?a[]=1&x=&ID=AbC",
+        "canonical": "news.example.org/~user/%E2%82%B9?id=AbC",
+        "plain": "m.news.example.org/%7euser/%e2%82%b9?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "https://m.news.example.org/index.php?id=42&page=3",
+        "canonical": "news.example.org/?id=42&page=3",
+        "plain": "m.news.example.org/index.php?id=42&page=3"
+    },
+    {
+        "url": "HTTP://m.news.example.org/index.php?fbclid=Q&story=12",
+        "canonical": "news.example.org/?story=12",
+        "plain": "m.news.example.org/index.php?fbclid=q&story=12"
+    },
+    {
+        "url": "https://m.news.example.org/page.aspx?p=7&ref=home",
+        "canonical": "news.example.org/page.aspx?p=7",
+        "plain": "m.news.example.org/page.aspx?p=7&ref=home"
+    },
+    {
+        "url": "HTTP://m.news.example.org/page.aspx?q=caf%c3%a9+bar",
+        "canonical": "news.example.org/page.aspx?q=caf%C3%A9+bar",
+        "plain": "m.news.example.org/page.aspx?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "https://m.news.example.org/samachar/समाचार?b=2&a=1",
+        "canonical": "news.example.org/samachar/%E0%A4%B8%E0%A4%AE%E0%A4%BE%E0%A4%9A%E0%A4%BE%E0%A4%B0",
+        "plain": "m.news.example.org/samachar/समाचार?b=2&a=1"
+    },
+    {
+        "url": "HTTP://m.news.example.org/s-amp.html",
+        "canonical": "news.example.org/s.html",
+        "plain": "m.news.example.org/s-amp.html"
+    },
+    {
+        "url": "https://m.news.example.org/s-amp.html?id=1&id=2#frag",
+        "canonical": "news.example.org/s.html?id=2",
+        "plain": "m.news.example.org/s-amp.html?id=1&id=2"
+    },
+    {
+        "url": "HTTP://m.news.example.org/x/amp_articleshow/99.cms?utm_source=rss&utm_medium=feed",
+        "canonical": "news.example.org/x/articleshow/99.cms",
+        "plain": "m.news.example.org/x/amp_articleshow/99.cms?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "https://m.news.example.org/x/amp_articleshow/99.cms?a[]=1&x=&ID=AbC",
+        "canonical": "news.example.org/x/articleshow/99.cms?id=AbC",
+        "plain": "m.news.example.org/x/amp_articleshow/99.cms?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "HTTP://m.news.example.org/camp/amplifier?id=42&page=3",
+        "canonical": "news.example.org/camp/amplifier?id=42",
+        "plain": "m.news.example.org/camp/amplifier?id=42&page=3"
+    },
+    {
+        "url": "https://m.news.example.org/camp/amplifier?fbclid=Q&story=12",
+        "canonical": "news.example.org/camp/amplifier?story=12",
+        "plain": "m.news.example.org/camp/amplifier?fbclid=q&story=12"
+    },
+    {
+        "url": "HTTP://amp.example.in?utm_source=rss&utm_medium=feed",
+        "canonical": "example.in/",
+        "plain": "amp.example.in?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "https://amp.example.in?a[]=1&x=&ID=AbC",
+        "canonical": "example.in/?id=AbC",
+        "plain": "amp.example.in?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "HTTP://amp.example.in/?id=42&page=3",
+        "canonical": "example.in/?id=42&page=3",
+        "plain": "amp.example.in?id=42&page=3"
+    },
+    {
+        "url": "https://amp.example.in/?fbclid=Q&story=12",
+        "canonical": "example.in/?story=12",
+        "plain": "amp.example.in?fbclid=q&story=12"
+    },
+    {
+        "url": "HTTP://amp.example.in/a/b/?p=7&ref=home",
+        "canonical": "example.in/a/b?p=7",
+        "plain": "amp.example.in/a/b?p=7&ref=home"
+    },
+    {
+        "url": "https://amp.example.in/a/b/?q=caf%c3%a9+bar",
+        "canonical": "example.in/a/b",
+        "plain": "amp.example.in/a/b?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "HTTP://amp.example.in/2026/11/story-title-123456.html?b=2&a=1",
+        "canonical": "example.in/2026/11/story-title-123456.html",
+        "plain": "amp.example.in/2026/11/story-title-123456.html?b=2&a=1"
+    },
+    {
+        "url": "https://amp.example.in/news/amp/story",
+        "canonical": "example.in/news/story",
+        "plain": "amp.example.in/news/amp/story"
+    },
+    {
+        "url": "HTTP://amp.example.in/news/amp/story?id=1&id=2#frag",
+        "canonical": "example.in/news/story?id=2",
+        "plain": "amp.example.in/news/amp/story?id=1&id=2"
+    },
+    {
+        "url": "https://amp.example.in/story.amp?utm_source=rss&utm_medium=feed",
+        "canonical": "example.in/story",
+        "plain": "amp.example.in/story.amp?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "HTTP://amp.example.in/story.amp?a[]=1&x=&ID=AbC",
+        "canonical": "example.in/story?id=AbC",
+        "plain": "amp.example.in/story.amp?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "https://amp.example.in/A//B/./c/../D?id=42&page=3",
+        "canonical": "example.in/A/B/D?id=42",
+        "plain": "amp.example.in/a//b/./c/../d?id=42&page=3"
+    },
+    {
+        "url": "HTTP://amp.example.in/A//B/./c/../D?fbclid=Q&story=12",
+        "canonical": "example.in/A/B/D?story=12",
+        "plain": "amp.example.in/a//b/./c/../d?fbclid=q&story=12"
+    },
+    {
+        "url": "https://amp.example.in/%7euser/%e2%82%b9?p=7&ref=home",
+        "canonical": "example.in/~user/%E2%82%B9?p=7",
+        "plain": "amp.example.in/%7euser/%e2%82%b9?p=7&ref=home"
+    },
+    {
+        "url": "HTTP://amp.example.in/%7euser/%e2%82%b9?q=caf%c3%a9+bar",
+        "canonical": "example.in/~user/%E2%82%B9",
+        "plain": "amp.example.in/%7euser/%e2%82%b9?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "https://amp.example.in/index.php?b=2&a=1",
+        "canonical": "example.in/?a=1&b=2",
+        "plain": "amp.example.in/index.php?b=2&a=1"
+    },
+    {
+        "url": "HTTP://amp.example.in/page.aspx",
+        "canonical": "example.in/page.aspx",
+        "plain": "amp.example.in/page.aspx"
+    },
+    {
+        "url": "https://amp.example.in/page.aspx?id=1&id=2#frag",
+        "canonical": "example.in/page.aspx?id=2",
+        "plain": "amp.example.in/page.aspx?id=1&id=2"
+    },
+    {
+        "url": "HTTP://amp.example.in/samachar/समाचार?utm_source=rss&utm_medium=feed",
+        "canonical": "example.in/samachar/%E0%A4%B8%E0%A4%AE%E0%A4%BE%E0%A4%9A%E0%A4%BE%E0%A4%B0",
+        "plain": "amp.example.in/samachar/समाचार?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "https://amp.example.in/samachar/समाचार?a[]=1&x=&ID=AbC",
+        "canonical": "example.in/samachar/%E0%A4%B8%E0%A4%AE%E0%A4%BE%E0%A4%9A%E0%A4%BE%E0%A4%B0?id=AbC",
+        "plain": "amp.example.in/samachar/समाचार?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "HTTP://amp.example.in/s-amp.html?id=42&page=3",
+        "canonical": "example.in/s.html?id=42",
+        "plain": "amp.example.in/s-amp.html?id=42&page=3"
+    },
+    {
+        "url": "https://amp.example.in/s-amp.html?fbclid=Q&story=12",
+        "canonical": "example.in/s.html?story=12",
+        "plain": "amp.example.in/s-amp.html?fbclid=q&story=12"
+    },
+    {
+        "url": "HTTP://amp.example.in/x/amp_articleshow/99.cms?p=7&ref=home",
+        "canonical": "example.in/x/articleshow/99.cms?p=7",
+        "plain": "amp.example.in/x/amp_articleshow/99.cms?p=7&ref=home"
+    },
+    {
+        "url": "https://amp.example.in/x/amp_articleshow/99.cms?q=caf%c3%a9+bar",
+        "canonical": "example.in/x/articleshow/99.cms",
+        "plain": "amp.example.in/x/amp_articleshow/99.cms?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "HTTP://amp.example.in/camp/amplifier?b=2&a=1",
+        "canonical": "example.in/camp/amplifier",
+        "plain": "amp.example.in/camp/amplifier?b=2&a=1"
+    },
+    {
+        "url": "HTTP://192.0.2.10?p=7&ref=home",
+        "canonical": "192.0.2.10/?p=7",
+        "plain": "192.0.2.10?p=7&ref=home"
+    },
+    {
+        "url": "https://192.0.2.10?q=caf%c3%a9+bar",
+        "canonical": "192.0.2.10/?q=caf%C3%A9+bar",
+        "plain": "192.0.2.10?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "HTTP://192.0.2.10/?b=2&a=1",
+        "canonical": "192.0.2.10/?a=1&b=2",
+        "plain": "192.0.2.10?b=2&a=1"
+    },
+    {
+        "url": "https://192.0.2.10/a/b/",
+        "canonical": "192.0.2.10/a/b",
+        "plain": "192.0.2.10/a/b"
+    },
+    {
+        "url": "HTTP://192.0.2.10/a/b/?id=1&id=2#frag",
+        "canonical": "192.0.2.10/a/b?id=2",
+        "plain": "192.0.2.10/a/b?id=1&id=2"
+    },
+    {
+        "url": "https://192.0.2.10/2026/11/story-title-123456.html?utm_source=rss&utm_medium=feed",
+        "canonical": "192.0.2.10/2026/11/story-title-123456.html",
+        "plain": "192.0.2.10/2026/11/story-title-123456.html?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "HTTP://192.0.2.10/2026/11/story-title-123456.html?a[]=1&x=&ID=AbC",
+        "canonical": "192.0.2.10/2026/11/story-title-123456.html?id=AbC",
+        "plain": "192.0.2.10/2026/11/story-title-123456.html?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "https://192.0.2.10/news/amp/story?id=42&page=3",
+        "canonical": "192.0.2.10/news/story?id=42",
+        "plain": "192.0.2.10/news/amp/story?id=42&page=3"
+    },
+    {
+        "url": "HTTP://192.0.2.10/news/amp/story?fbclid=Q&story=12",
+        "canonical": "192.0.2.10/news/story?story=12",
+        "plain": "192.0.2.10/news/amp/story?fbclid=q&story=12"
+    },
+    {
+        "url": "https://192.0.2.10/story.amp?p=7&ref=home",
+        "canonical": "192.0.2.10/story?p=7",
+        "plain": "192.0.2.10/story.amp?p=7&ref=home"
+    },
+    {
+        "url": "HTTP://192.0.2.10/story.amp?q=caf%c3%a9+bar",
+        "canonical": "192.0.2.10/story",
+        "plain": "192.0.2.10/story.amp?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "https://192.0.2.10/A//B/./c/../D?b=2&a=1",
+        "canonical": "192.0.2.10/A/B/D",
+        "plain": "192.0.2.10/a//b/./c/../d?b=2&a=1"
+    },
+    {
+        "url": "HTTP://192.0.2.10/%7euser/%e2%82%b9",
+        "canonical": "192.0.2.10/~user/%E2%82%B9",
+        "plain": "192.0.2.10/%7euser/%e2%82%b9"
+    },
+    {
+        "url": "https://192.0.2.10/%7euser/%e2%82%b9?id=1&id=2#frag",
+        "canonical": "192.0.2.10/~user/%E2%82%B9?id=2",
+        "plain": "192.0.2.10/%7euser/%e2%82%b9?id=1&id=2"
+    },
+    {
+        "url": "HTTP://192.0.2.10/index.php?utm_source=rss&utm_medium=feed",
+        "canonical": "192.0.2.10/",
+        "plain": "192.0.2.10/index.php?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "https://192.0.2.10/index.php?a[]=1&x=&ID=AbC",
+        "canonical": "192.0.2.10/?id=AbC",
+        "plain": "192.0.2.10/index.php?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "HTTP://192.0.2.10/page.aspx?id=42&page=3",
+        "canonical": "192.0.2.10/page.aspx?id=42&page=3",
+        "plain": "192.0.2.10/page.aspx?id=42&page=3"
+    },
+    {
+        "url": "https://192.0.2.10/page.aspx?fbclid=Q&story=12",
+        "canonical": "192.0.2.10/page.aspx?story=12",
+        "plain": "192.0.2.10/page.aspx?fbclid=q&story=12"
+    },
+    {
+        "url": "HTTP://192.0.2.10/samachar/समाचार?p=7&ref=home",
+        "canonical": "192.0.2.10/samachar/%E0%A4%B8%E0%A4%AE%E0%A4%BE%E0%A4%9A%E0%A4%BE%E0%A4%B0?p=7",
+        "plain": "192.0.2.10/samachar/समाचार?p=7&ref=home"
+    },
+    {
+        "url": "https://192.0.2.10/samachar/समाचार?q=caf%c3%a9+bar",
+        "canonical": "192.0.2.10/samachar/%E0%A4%B8%E0%A4%AE%E0%A4%BE%E0%A4%9A%E0%A4%BE%E0%A4%B0",
+        "plain": "192.0.2.10/samachar/समाचार?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "HTTP://192.0.2.10/s-amp.html?b=2&a=1",
+        "canonical": "192.0.2.10/s.html",
+        "plain": "192.0.2.10/s-amp.html?b=2&a=1"
+    },
+    {
+        "url": "https://192.0.2.10/x/amp_articleshow/99.cms",
+        "canonical": "192.0.2.10/x/articleshow/99.cms",
+        "plain": "192.0.2.10/x/amp_articleshow/99.cms"
+    },
+    {
+        "url": "HTTP://192.0.2.10/x/amp_articleshow/99.cms?id=1&id=2#frag",
+        "canonical": "192.0.2.10/x/articleshow/99.cms?id=2",
+        "plain": "192.0.2.10/x/amp_articleshow/99.cms?id=1&id=2"
+    },
+    {
+        "url": "https://192.0.2.10/camp/amplifier?utm_source=rss&utm_medium=feed",
+        "canonical": "192.0.2.10/camp/amplifier",
+        "plain": "192.0.2.10/camp/amplifier?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "HTTP://192.0.2.10/camp/amplifier?a[]=1&x=&ID=AbC",
+        "canonical": "192.0.2.10/camp/amplifier?id=AbC",
+        "plain": "192.0.2.10/camp/amplifier?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "https://xn--bcher-kva.example",
+        "canonical": "xn--bcher-kva.example/",
+        "plain": "xn--bcher-kva.example"
+    },
+    {
+        "url": "HTTP://xn--bcher-kva.example?id=1&id=2#frag",
+        "canonical": "xn--bcher-kva.example/?id=2",
+        "plain": "xn--bcher-kva.example?id=1&id=2"
+    },
+    {
+        "url": "https://xn--bcher-kva.example/?utm_source=rss&utm_medium=feed",
+        "canonical": "xn--bcher-kva.example/",
+        "plain": "xn--bcher-kva.example?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "HTTP://xn--bcher-kva.example/?a[]=1&x=&ID=AbC",
+        "canonical": "xn--bcher-kva.example/?id=AbC",
+        "plain": "xn--bcher-kva.example?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "https://xn--bcher-kva.example/a/b/?id=42&page=3",
+        "canonical": "xn--bcher-kva.example/a/b?id=42",
+        "plain": "xn--bcher-kva.example/a/b?id=42&page=3"
+    },
+    {
+        "url": "HTTP://xn--bcher-kva.example/a/b/?fbclid=Q&story=12",
+        "canonical": "xn--bcher-kva.example/a/b?story=12",
+        "plain": "xn--bcher-kva.example/a/b?fbclid=q&story=12"
+    },
+    {
+        "url": "https://xn--bcher-kva.example/2026/11/story-title-123456.html?p=7&ref=home",
+        "canonical": "xn--bcher-kva.example/2026/11/story-title-123456.html?p=7",
+        "plain": "xn--bcher-kva.example/2026/11/story-title-123456.html?p=7&ref=home"
+    },
+    {
+        "url": "HTTP://xn--bcher-kva.example/2026/11/story-title-123456.html?q=caf%c3%a9+bar",
+        "canonical": "xn--bcher-kva.example/2026/11/story-title-123456.html",
+        "plain": "xn--bcher-kva.example/2026/11/story-title-123456.html?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "https://xn--bcher-kva.example/news/amp/story?b=2&a=1",
+        "canonical": "xn--bcher-kva.example/news/story",
+        "plain": "xn--bcher-kva.example/news/amp/story?b=2&a=1"
+    },
+    {
+        "url": "HTTP://xn--bcher-kva.example/story.amp",
+        "canonical": "xn--bcher-kva.example/story",
+        "plain": "xn--bcher-kva.example/story.amp"
+    },
+    {
+        "url": "https://xn--bcher-kva.example/story.amp?id=1&id=2#frag",
+        "canonical": "xn--bcher-kva.example/story?id=2",
+        "plain": "xn--bcher-kva.example/story.amp?id=1&id=2"
+    },
+    {
+        "url": "HTTP://xn--bcher-kva.example/A//B/./c/../D?utm_source=rss&utm_medium=feed",
+        "canonical": "xn--bcher-kva.example/A/B/D",
+        "plain": "xn--bcher-kva.example/a//b/./c/../d?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "https://xn--bcher-kva.example/A//B/./c/../D?a[]=1&x=&ID=AbC",
+        "canonical": "xn--bcher-kva.example/A/B/D?id=AbC",
+        "plain": "xn--bcher-kva.example/a//b/./c/../d?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "HTTP://xn--bcher-kva.example/%7euser/%e2%82%b9?id=42&page=3",
+        "canonical": "xn--bcher-kva.example/~user/%E2%82%B9?id=42",
+        "plain": "xn--bcher-kva.example/%7euser/%e2%82%b9?id=42&page=3"
+    },
+    {
+        "url": "https://xn--bcher-kva.example/%7euser/%e2%82%b9?fbclid=Q&story=12",
+        "canonical": "xn--bcher-kva.example/~user/%E2%82%B9?story=12",
+        "plain": "xn--bcher-kva.example/%7euser/%e2%82%b9?fbclid=q&story=12"
+    },
+    {
+        "url": "HTTP://xn--bcher-kva.example/index.php?p=7&ref=home",
+        "canonical": "xn--bcher-kva.example/?p=7",
+        "plain": "xn--bcher-kva.example/index.php?p=7&ref=home"
+    },
+    {
+        "url": "https://xn--bcher-kva.example/index.php?q=caf%c3%a9+bar",
+        "canonical": "xn--bcher-kva.example/?q=caf%C3%A9+bar",
+        "plain": "xn--bcher-kva.example/index.php?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "HTTP://xn--bcher-kva.example/page.aspx?b=2&a=1",
+        "canonical": "xn--bcher-kva.example/page.aspx?a=1&b=2",
+        "plain": "xn--bcher-kva.example/page.aspx?b=2&a=1"
+    },
+    {
+        "url": "https://xn--bcher-kva.example/samachar/समाचार",
+        "canonical": "xn--bcher-kva.example/samachar/%E0%A4%B8%E0%A4%AE%E0%A4%BE%E0%A4%9A%E0%A4%BE%E0%A4%B0",
+        "plain": "xn--bcher-kva.example/samachar/समाचार"
+    },
+    {
+        "url": "HTTP://xn--bcher-kva.example/samachar/समाचार?id=1&id=2#frag",
+        "canonical": "xn--bcher-kva.example/samachar/%E0%A4%B8%E0%A4%AE%E0%A4%BE%E0%A4%9A%E0%A4%BE%E0%A4%B0?id=2",
+        "plain": "xn--bcher-kva.example/samachar/समाचार?id=1&id=2"
+    },
+    {
+        "url": "https://xn--bcher-kva.example/s-amp.html?utm_source=rss&utm_medium=feed",
+        "canonical": "xn--bcher-kva.example/s.html",
+        "plain": "xn--bcher-kva.example/s-amp.html?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "HTTP://xn--bcher-kva.example/s-amp.html?a[]=1&x=&ID=AbC",
+        "canonical": "xn--bcher-kva.example/s.html?id=AbC",
+        "plain": "xn--bcher-kva.example/s-amp.html?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "https://xn--bcher-kva.example/x/amp_articleshow/99.cms?id=42&page=3",
+        "canonical": "xn--bcher-kva.example/x/articleshow/99.cms?id=42",
+        "plain": "xn--bcher-kva.example/x/amp_articleshow/99.cms?id=42&page=3"
+    },
+    {
+        "url": "HTTP://xn--bcher-kva.example/x/amp_articleshow/99.cms?fbclid=Q&story=12",
+        "canonical": "xn--bcher-kva.example/x/articleshow/99.cms?story=12",
+        "plain": "xn--bcher-kva.example/x/amp_articleshow/99.cms?fbclid=q&story=12"
+    },
+    {
+        "url": "https://xn--bcher-kva.example/camp/amplifier?p=7&ref=home",
+        "canonical": "xn--bcher-kva.example/camp/amplifier?p=7",
+        "plain": "xn--bcher-kva.example/camp/amplifier?p=7&ref=home"
+    },
+    {
+        "url": "HTTP://xn--bcher-kva.example/camp/amplifier?q=caf%c3%a9+bar",
+        "canonical": "xn--bcher-kva.example/camp/amplifier",
+        "plain": "xn--bcher-kva.example/camp/amplifier?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "https://hindi.example.com?id=42&page=3",
+        "canonical": "hindi.example.com/?id=42&page=3",
+        "plain": "hindi.example.com?id=42&page=3"
+    },
+    {
+        "url": "HTTP://hindi.example.com?fbclid=Q&story=12",
+        "canonical": "hindi.example.com/?story=12",
+        "plain": "hindi.example.com?fbclid=q&story=12"
+    },
+    {
+        "url": "https://hindi.example.com/?p=7&ref=home",
+        "canonical": "hindi.example.com/?p=7",
+        "plain": "hindi.example.com?p=7&ref=home"
+    },
+    {
+        "url": "HTTP://hindi.example.com/?q=caf%c3%a9+bar",
+        "canonical": "hindi.example.com/?q=caf%C3%A9+bar",
+        "plain": "hindi.example.com?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "https://hindi.example.com/a/b/?b=2&a=1",
+        "canonical": "hindi.example.com/a/b",
+        "plain": "hindi.example.com/a/b?b=2&a=1"
+    },
+    {
+        "url": "HTTP://hindi.example.com/2026/11/story-title-123456.html",
+        "canonical": "hindi.example.com/2026/11/story-title-123456.html",
+        "plain": "hindi.example.com/2026/11/story-title-123456.html"
+    },
+    {
+        "url": "https://hindi.example.com/2026/11/story-title-123456.html?id=1&id=2#frag",
+        "canonical": "hindi.example.com/2026/11/story-title-123456.html?id=2",
+        "plain": "hindi.example.com/2026/11/story-title-123456.html?id=1&id=2"
+    },
+    {
+        "url": "HTTP://hindi.example.com/news/amp/story?utm_source=rss&utm_medium=feed",
+        "canonical": "hindi.example.com/news/story",
+        "plain": "hindi.example.com/news/amp/story?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "https://hindi.example.com/news/amp/story?a[]=1&x=&ID=AbC",
+        "canonical": "hindi.example.com/news/story?id=AbC",
+        "plain": "hindi.example.com/news/amp/story?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "HTTP://hindi.example.com/story.amp?id=42&page=3",
+        "canonical": "hindi.example.com/story?id=42",
+        "plain": "hindi.example.com/story.amp?id=42&page=3"
+    },
+    {
+        "url": "https://hindi.example.com/story.amp?fbclid=Q&story=12",
+        "canonical": "hindi.example.com/story?story=12",
+        "plain": "hindi.example.com/story.amp?fbclid=q&story=12"
+    },
+    {
+        "url": "HTTP://hindi.example.com/A//B/./c/../D?p=7&ref=home",
+        "canonical": "hindi.example.com/A/B/D?p=7",
+        "plain": "hindi.example.com/a//b/./c/../d?p=7&ref=home"
+    },
+    {
+        "url": "https://hindi.example.com/A//B/./c/../D?q=caf%c3%a9+bar",
+        "canonical": "hindi.example.com/A/B/D",
+        "plain": "hindi.example.com/a//b/./c/../d?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "HTTP://hindi.example.com/%7euser/%e2%82%b9?b=2&a=1",
+        "canonical": "hindi.example.com/~user/%E2%82%B9",
+        "plain": "hindi.example.com/%7euser/%e2%82%b9?b=2&a=1"
+    },
+    {
+        "url": "https://hindi.example.com/index.php",
+        "canonical": "hindi.example.com/",
+        "plain": "hindi.example.com/index.php"
+    },
+    {
+        "url": "HTTP://hindi.example.com/index.php?id=1&id=2#frag",
+        "canonical": "hindi.example.com/?id=2",
+        "plain": "hindi.example.com/index.php?id=1&id=2"
+    },
+    {
+        "url": "https://hindi.example.com/page.aspx?utm_source=rss&utm_medium=feed",
+        "canonical": "hindi.example.com/page.aspx",
+        "plain": "hindi.example.com/page.aspx?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "HTTP://hindi.example.com/page.aspx?a[]=1&x=&ID=AbC",
+        "canonical": "hindi.example.com/page.aspx?id=AbC",
+        "plain": "hindi.example.com/page.aspx?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "https://hindi.example.com/samachar/समाचार?id=42&page=3",
+        "canonical": "hindi.example.com/samachar/%E0%A4%B8%E0%A4%AE%E0%A4%BE%E0%A4%9A%E0%A4%BE%E0%A4%B0?id=42",
+        "plain": "hindi.example.com/samachar/समाचार?id=42&page=3"
+    },
+    {
+        "url": "HTTP://hindi.example.com/samachar/समाचार?fbclid=Q&story=12",
+        "canonical": "hindi.example.com/samachar/%E0%A4%B8%E0%A4%AE%E0%A4%BE%E0%A4%9A%E0%A4%BE%E0%A4%B0?story=12",
+        "plain": "hindi.example.com/samachar/समाचार?fbclid=q&story=12"
+    },
+    {
+        "url": "https://hindi.example.com/s-amp.html?p=7&ref=home",
+        "canonical": "hindi.example.com/s.html?p=7",
+        "plain": "hindi.example.com/s-amp.html?p=7&ref=home"
+    },
+    {
+        "url": "HTTP://hindi.example.com/s-amp.html?q=caf%c3%a9+bar",
+        "canonical": "hindi.example.com/s.html",
+        "plain": "hindi.example.com/s-amp.html?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "https://hindi.example.com/x/amp_articleshow/99.cms?b=2&a=1",
+        "canonical": "hindi.example.com/x/articleshow/99.cms",
+        "plain": "hindi.example.com/x/amp_articleshow/99.cms?b=2&a=1"
+    },
+    {
+        "url": "HTTP://hindi.example.com/camp/amplifier",
+        "canonical": "hindi.example.com/camp/amplifier",
+        "plain": "hindi.example.com/camp/amplifier"
+    },
+    {
+        "url": "https://hindi.example.com/camp/amplifier?id=1&id=2#frag",
+        "canonical": "hindi.example.com/camp/amplifier?id=2",
+        "plain": "hindi.example.com/camp/amplifier?id=1&id=2"
+    },
+    {
+        "url": "https://example.com:8080?b=2&a=1",
+        "canonical": "example.com:8080/?a=1&b=2",
+        "plain": "example.com:8080?b=2&a=1"
+    },
+    {
+        "url": "HTTP://example.com:8080/",
+        "canonical": "example.com:8080/",
+        "plain": "example.com:8080"
+    },
+    {
+        "url": "https://example.com:8080/?id=1&id=2#frag",
+        "canonical": "example.com:8080/?id=2",
+        "plain": "example.com:8080?id=1&id=2"
+    },
+    {
+        "url": "HTTP://example.com:8080/a/b/?utm_source=rss&utm_medium=feed",
+        "canonical": "example.com:8080/a/b",
+        "plain": "example.com:8080/a/b?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "https://example.com:8080/a/b/?a[]=1&x=&ID=AbC",
+        "canonical": "example.com:8080/a/b?id=AbC",
+        "plain": "example.com:8080/a/b?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "HTTP://example.com:8080/2026/11/story-title-123456.html?id=42&page=3",
+        "canonical": "example.com:8080/2026/11/story-title-123456.html?id=42",
+        "plain": "example.com:8080/2026/11/story-title-123456.html?id=42&page=3"
+    },
+    {
+        "url": "https://example.com:8080/2026/11/story-title-123456.html?fbclid=Q&story=12",
+        "canonical": "example.com:8080/2026/11/story-title-123456.html?story=12",
+        "plain": "example.com:8080/2026/11/story-title-123456.html?fbclid=q&story=12"
+    },
+    {
+        "url": "HTTP://example.com:8080/news/amp/story?p=7&ref=home",
+        "canonical": "example.com:8080/news/story?p=7",
+        "plain": "example.com:8080/news/amp/story?p=7&ref=home"
+    },
+    {
+        "url": "https://example.com:8080/news/amp/story?q=caf%c3%a9+bar",
+        "canonical": "example.com:8080/news/story",
+        "plain": "example.com:8080/news/amp/story?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "HTTP://example.com:8080/story.amp?b=2&a=1",
+        "canonical": "example.com:8080/story",
+        "plain": "example.com:8080/story.amp?b=2&a=1"
+    },
+    {
+        "url": "https://example.com:8080/A//B/./c/../D",
+        "canonical": "example.com:8080/A/B/D",
+        "plain": "example.com:8080/a//b/./c/../d"
+    },
+    {
+        "url": "HTTP://example.com:8080/A//B/./c/../D?id=1&id=2#frag",
+        "canonical": "example.com:8080/A/B/D?id=2",
+        "plain": "example.com:8080/a//b/./c/../d?id=1&id=2"
+    },
+    {
+        "url": "https://example.com:8080/%7euser/%e2%82%b9?utm_source=rss&utm_medium=feed",
+        "canonical": "example.com:8080/~user/%E2%82%B9",
+        "plain": "example.com:8080/%7euser/%e2%82%b9?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "HTTP://example.com:8080/%7euser/%e2%82%b9?a[]=1&x=&ID=AbC",
+        "canonical": "example.com:8080/~user/%E2%82%B9?id=AbC",
+        "plain": "example.com:8080/%7euser/%e2%82%b9?a[]=1&x=&id=abc"
+    },
+    {
+        "url": "https://example.com:8080/index.php?id=42&page=3",
+        "canonical": "example.com:8080/?id=42&page=3",
+        "plain": "example.com:8080/index.php?id=42&page=3"
+    },
+    {
+        "url": "HTTP://example.com:8080/index.php?fbclid=Q&story=12",
+        "canonical": "example.com:8080/?story=12",
+        "plain": "example.com:8080/index.php?fbclid=q&story=12"
+    },
+    {
+        "url": "https://example.com:8080/page.aspx?p=7&ref=home",
+        "canonical": "example.com:8080/page.aspx?p=7",
+        "plain": "example.com:8080/page.aspx?p=7&ref=home"
+    },
+    {
+        "url": "HTTP://example.com:8080/page.aspx?q=caf%c3%a9+bar",
+        "canonical": "example.com:8080/page.aspx?q=caf%C3%A9+bar",
+        "plain": "example.com:8080/page.aspx?q=caf%c3%a9+bar"
+    },
+    {
+        "url": "https://example.com:8080/samachar/समाचार?b=2&a=1",
+        "canonical": "example.com:8080/samachar/%E0%A4%B8%E0%A4%AE%E0%A4%BE%E0%A4%9A%E0%A4%BE%E0%A4%B0",
+        "plain": "example.com:8080/samachar/समाचार?b=2&a=1"
+    },
+    {
+        "url": "HTTP://example.com:8080/s-amp.html",
+        "canonical": "example.com:8080/s.html",
+        "plain": "example.com:8080/s-amp.html"
+    },
+    {
+        "url": "https://example.com:8080/s-amp.html?id=1&id=2#frag",
+        "canonical": "example.com:8080/s.html?id=2",
+        "plain": "example.com:8080/s-amp.html?id=1&id=2"
+    },
+    {
+        "url": "HTTP://example.com:8080/x/amp_articleshow/99.cms?utm_source=rss&utm_medium=feed",
+        "canonical": "example.com:8080/x/articleshow/99.cms",
+        "plain": "example.com:8080/x/amp_articleshow/99.cms?utm_source=rss&utm_medium=feed"
+    },
+    {
+        "url": "https://example.com:8080/x/amp_articleshow/99.cms?a[]=1&x=&ID=AbC",
+        "canonical": "example.com:8080/x/articleshow/99.cms?id=AbC",
+        "plain": "example.com:8080/x/amp_articleshow/99.cms?a[]=1&x=&id=abc"
+    }
+]
