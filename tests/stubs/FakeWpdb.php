@@ -378,7 +378,10 @@ class wpdb
         return $m[1];
     }
 
-    private function error(string $message): false
+    /**
+     * @return false
+     */
+    private function error(string $message): bool
     {
         $this->last_error = $message;
 
