@@ -1,2 +1,7 @@
-vendor/
-.phpunit.cache/
+/vendor/
+/.phpunit.cache/
+/.phpcs-cache
+/phpunit.xml
+/phpstan.neon
+/phpcs.xml
+.DS_Store

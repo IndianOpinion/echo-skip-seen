@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<ruleset name="echo-skip-seen">
+    <description>PSR-12, plus the WordPress security sniffs for escaping, nonces, input and SQL.</description>
+
+    <file>echo-skip-seen.php</file>
+    <file>uninstall.php</file>
+    <file>src</file>
+    <file>tests</file>
+    <file>examples</file>
+
+    <exclude-pattern>tests/fixtures/*</exclude-pattern>
+
+    <arg name="extensions" value="php"/>
+    <arg name="colors"/>
+    <arg value="sp"/>
+
+    <rule ref="PSR12"/>
+
+    <!-- Security sniffs from the WordPress standard, on plugin code only. -->
+    <rule ref="WordPress.Security.EscapeOutput">
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
+    <rule ref="WordPress.Security.NonceVerification">
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
+    <rule ref="WordPress.Security.ValidatedSanitizedInput">
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
+    <rule ref="WordPress.DB.PreparedSQL">
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
+    <rule ref="WordPress.DB.PreparedSQLPlaceholders">
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
+    <rule ref="WordPress.PHP.NoSilencedErrors"/>
+
+    <!-- The plugin and uninstall files are entry points: they declare and act. -->
+    <rule ref="PSR1.Files.SideEffects">
+        <exclude-pattern>echo-skip-seen.php</exclude-pattern>
+        <exclude-pattern>uninstall.php</exclude-pattern>
+        <exclude-pattern>src/autoload.php</exclude-pattern>
+        <exclude-pattern>src/functions.php</exclude-pattern>
+        <exclude-pattern>examples/*</exclude-pattern>
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
+
+    <!-- Test doubles of WordPress keep WordPress names. -->
+    <rule ref="PSR1.Methods.CamelCapsMethodName">
+        <exclude-pattern>tests/stubs/*</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.Classes.ValidClassName">
+        <exclude-pattern>tests/stubs/*</exclude-pattern>
+    </rule>
+    <rule ref="PSR1.Classes.ClassDeclaration">
+        <exclude-pattern>tests/stubs/*</exclude-pattern>
+        <exclude-pattern>tests/phpstan-bootstrap.php</exclude-pattern>
+    </rule>
+    <!-- Exception messages are never printed; admin output escapes them. -->
+    <rule ref="WordPress.Security.EscapeOutput.ExceptionNotEscaped">
+        <severity>0</severity>
+    </rule>
+
+    <!-- Admin screens hold long translatable strings and HTML. -->
+    <rule ref="Generic.Files.LineLength">
+        <exclude-pattern>tests/*</exclude-pattern>
+        <exclude-pattern>src/Admin/*</exclude-pattern>
+        <properties>
+            <property name="lineLimit" value="140"/>
+            <property name="absoluteLineLimit" value="200"/>
+        </properties>
+    </rule>
+</ruleset>
