@@ -12,6 +12,10 @@ namespace IndianOpinion\EchoSkipSeen;
  * operating aid, not an audit log. Hourly buckets of checked and skipped
  * over the last day feed the Site Health ratio note.
  *
+ * Pending increments are kept per site, so an importer that calls
+ * switch_to_blog() in one request has each site's counts written to that
+ * site's option (PRD 91), one write per site touched.
+ *
  * @phpstan-type Snapshot array{
  *     checked: int,
  *     skipped: int,
@@ -30,10 +34,10 @@ final class Counters
 
     private const BUCKET_HOURS = 24;
 
-    /** @var array<string, int> */
+    /** @var array<int, array<string, int>> Site id to pending counts. */
     private array $pending = [];
 
-    /** @var array<int, array{checked: int, skipped: int}> */
+    /** @var array<int, array<int, array{checked: int, skipped: int}>> Site id to pending hourly buckets. */
     private array $pendingBuckets = [];
 
     private bool $shutdownHooked = false;
@@ -48,13 +52,14 @@ final class Counters
             return;
         }
 
-        $this->pending[$name] = ($this->pending[$name] ?? 0) + $by;
+        $site = get_current_blog_id();
+        $this->pending[$site][$name] = ($this->pending[$site][$name] ?? 0) + $by;
 
         if ($name === 'checked' || $name === 'skipped') {
             $hour = intdiv($this->clock->now(), 3600);
-            $bucket = $this->pendingBuckets[$hour] ?? ['checked' => 0, 'skipped' => 0];
+            $bucket = $this->pendingBuckets[$site][$hour] ?? ['checked' => 0, 'skipped' => 0];
             $bucket[$name] += $by;
-            $this->pendingBuckets[$hour] = $bucket;
+            $this->pendingBuckets[$site][$hour] = $bucket;
         }
 
         if (!$this->shutdownHooked) {
@@ -64,7 +69,7 @@ final class Counters
     }
 
     /**
-     * Writes pending increments in one option write. Never throws.
+     * Writes pending increments, one option write per site. Never throws.
      */
     public function flush(): void
     {
@@ -72,23 +77,25 @@ final class Counters
             return;
         }
 
-        try {
-            $stored = $this->stored();
-            foreach ($this->pending as $name => $count) {
-                $stored['counts'][$name] = ($stored['counts'][$name] ?? 0) + $count;
+        $sites = array_unique(array_merge(array_keys($this->pending), array_keys($this->pendingBuckets)));
+        $current = get_current_blog_id();
+        foreach ($sites as $site) {
+            $switch = $site !== $current && is_multisite();
+            try {
+                if ($switch) {
+                    switch_to_blog($site);
+                }
+                try {
+                    $this->flushSite($this->pending[$site] ?? [], $this->pendingBuckets[$site] ?? []);
+                } finally {
+                    if ($switch) {
+                        restore_current_blog();
+                    }
+                }
+            } catch (\Throwable) {
+                // Counters never interrupt a request.
+                continue;
             }
-            foreach ($this->pendingBuckets as $hour => $bucket) {
-                $current = $stored['hourly'][$hour] ?? ['checked' => 0, 'skipped' => 0];
-                $stored['hourly'][$hour] = [
-                    'checked' => $current['checked'] + $bucket['checked'],
-                    'skipped' => $current['skipped'] + $bucket['skipped'],
-                ];
-            }
-            $stored['hourly'] = $this->trimBuckets($stored['hourly']);
-
-            $this->write($stored);
-        } catch (\Throwable) {
-            // Counters never interrupt a request.
         }
 
         $this->pending = [];
@@ -103,13 +110,14 @@ final class Counters
     public function snapshot(): array
     {
         $stored = $this->stored();
+        $site = get_current_blog_id();
         $counts = [];
         foreach (self::NAMES as $name) {
-            $counts[$name] = ($stored['counts'][$name] ?? 0) + ($this->pending[$name] ?? 0);
+            $counts[$name] = ($stored['counts'][$name] ?? 0) + ($this->pending[$site][$name] ?? 0);
         }
 
         $hourly = $stored['hourly'];
-        foreach ($this->pendingBuckets as $hour => $bucket) {
+        foreach ($this->pendingBuckets[$site] ?? [] as $hour => $bucket) {
             $current = $hourly[$hour] ?? ['checked' => 0, 'skipped' => 0];
             $hourly[$hour] = [
                 'checked' => $current['checked'] + $bucket['checked'],
@@ -135,14 +143,36 @@ final class Counters
 
     public function reset(): void
     {
-        $this->pending = [];
-        $this->pendingBuckets = [];
+        $site = get_current_blog_id();
+        unset($this->pending[$site], $this->pendingBuckets[$site]);
         $now = $this->clock->now();
         $this->write([
             'counts' => array_fill_keys(self::NAMES, 0),
             'since' => array_fill_keys(self::NAMES, $now),
             'hourly' => [],
         ]);
+    }
+
+    /**
+     * @param array<string, int>                              $pending
+     * @param array<int, array{checked: int, skipped: int}> $buckets
+     */
+    private function flushSite(array $pending, array $buckets): void
+    {
+        $stored = $this->stored();
+        foreach ($pending as $name => $count) {
+            $stored['counts'][$name] = ($stored['counts'][$name] ?? 0) + $count;
+        }
+        foreach ($buckets as $hour => $bucket) {
+            $current = $stored['hourly'][$hour] ?? ['checked' => 0, 'skipped' => 0];
+            $stored['hourly'][$hour] = [
+                'checked' => $current['checked'] + $bucket['checked'],
+                'skipped' => $current['skipped'] + $bucket['skipped'],
+            ];
+        }
+        $stored['hourly'] = $this->trimBuckets($stored['hourly']);
+
+        $this->write($stored);
     }
 
     /**

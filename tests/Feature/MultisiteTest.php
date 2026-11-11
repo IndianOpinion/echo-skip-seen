@@ -92,6 +92,33 @@ final class MultisiteTest extends PluginTestCase
         self::assertTrue($this->dup('https://example.com/shared'));
     }
 
+    public function testCountersFromASwitchedSiteLandOnThatSite(): void
+    {
+        // T61 within one request: counts follow the site they happened on.
+        $this->plugin->activate(true);
+        switch_to_blog(2);
+        echo_skip_seen_record('https://example.com/two', 5);
+        self::assertTrue($this->dup('https://example.com/two'));
+        restore_current_blog();
+        self::assertSame('https://example.com/one', $this->dup('https://example.com/one'));
+
+        $this->plugin->counters()->flush();
+
+        $counts = get_option(\IndianOpinion\EchoSkipSeen\Counters::OPTION);
+        self::assertIsArray($counts);
+        self::assertSame(1, $counts['counts']['checked']);
+        self::assertSame(0, $counts['counts']['skipped']);
+        self::assertSame(0, $counts['counts']['recorded']);
+
+        switch_to_blog(2);
+        $counts = get_option(\IndianOpinion\EchoSkipSeen\Counters::OPTION);
+        restore_current_blog();
+        self::assertIsArray($counts);
+        self::assertSame(1, $counts['counts']['checked']);
+        self::assertSame(1, $counts['counts']['skipped']);
+        self::assertSame(1, $counts['counts']['recorded']);
+    }
+
     public function testNewSiteIgnoredWhenNotNetworkActive(): void
     {
         do_action('wp_initialize_site', new WP_Site(301));
